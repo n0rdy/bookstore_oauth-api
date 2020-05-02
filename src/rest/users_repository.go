@@ -10,7 +10,7 @@ import (
 
 var (
 	usersRestClient = rest.RequestBuilder{
-		BaseURL: "https://api.bookstore.com", // TODO change to a real one
+		BaseURL: "http://localhost:8081",
 		Timeout: 100 * time.Millisecond,
 	}
 )
@@ -25,15 +25,17 @@ func NewRestUsersRepository() RestUsersRepository {
 	return &usersRepository{}
 }
 
-func (ur *usersRepository) LoginUser(email string, password string) (*users.User, *errors.RestErr) {
+func (r *usersRepository) LoginUser(email string, password string) (*users.User, *errors.RestErr) {
 	request := users.UserLoginRequest{
 		Email:    email,
 		Password: password,
 	}
+
 	response := usersRestClient.Post("/users/login", request)
 	if response == nil || response.Response == nil {
-		return nil, errors.NewInternalServerError("invalid rest client response on trying to login a user")
+		return nil, errors.NewInternalServerError("invalid rest client response on trying to login user")
 	}
+
 	if response.StatusCode > 299 {
 		var restErr errors.RestErr
 		err := json.Unmarshal(response.Bytes(), &restErr)
@@ -44,10 +46,8 @@ func (ur *usersRepository) LoginUser(email string, password string) (*users.User
 	}
 
 	var user users.User
-	err := json.Unmarshal(response.Bytes(), user)
-	if err != nil {
-		return nil, errors.NewInternalServerError("error on trying to unmarshal users response")
+	if err := json.Unmarshal(response.Bytes(), &user); err != nil {
+		return nil, errors.NewInternalServerError("error on trying to unmarshal users login response")
 	}
-
 	return &user, nil
 }
