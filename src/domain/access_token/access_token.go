@@ -2,8 +2,8 @@ package access_token
 
 import (
 	"fmt"
-	"github.com/n0rdy/bookstore_oauth-api/src/domain/errors"
 	"github.com/n0rdy/bookstore_users-api/utils/crypto"
+	"github.com/n0rdy/bookstore_utils-go/rest_errors"
 	"strings"
 	"time"
 )
@@ -45,19 +45,19 @@ func (at AccessToken) IsExpired() bool {
 	return time.Unix(at.Expires, 0).Before(time.Now().UTC())
 }
 
-func (at *AccessToken) Validate() *errors.RestErr {
+func (at *AccessToken) Validate() rest_errors.RestErr {
 	at.AccessToken = strings.TrimSpace(at.AccessToken)
 	if at.AccessToken == "" {
-		return errors.NewBadRequestError("Invalid access token id")
+		return rest_errors.NewBadRequestError("Invalid access token id")
 	}
 	if at.UserId <= 0 {
-		return errors.NewBadRequestError("Invalid user id")
+		return rest_errors.NewBadRequestError("Invalid user id")
 	}
 	if at.ClientId <= 0 {
-		return errors.NewBadRequestError("Invalid client id")
+		return rest_errors.NewBadRequestError("Invalid client id")
 	}
 	if at.Expires <= 0 {
-		return errors.NewBadRequestError("Invalid expiration date")
+		return rest_errors.NewBadRequestError("Invalid expiration date")
 	}
 	return nil
 }
@@ -66,7 +66,7 @@ func (at *AccessToken) Generate() {
 	at.AccessToken = crypto.GetMd5(fmt.Sprintf("at-%d-%d-ran", at.UserId, at.Expires))
 }
 
-func (at *AccessTokenRequest) Validate() *errors.RestErr {
+func (at *AccessTokenRequest) Validate() rest_errors.RestErr {
 	switch at.GrantType {
 	case grantTypePassword:
 		break
@@ -75,7 +75,7 @@ func (at *AccessTokenRequest) Validate() *errors.RestErr {
 		break
 
 	default:
-		return errors.NewBadRequestError("invalid grant_type parameter")
+		return rest_errors.NewBadRequestError("invalid grant_type parameter")
 	}
 
 	//TODO: Validate parameters for each grant_type
