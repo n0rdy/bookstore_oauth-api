@@ -1,10 +1,10 @@
 package db
 
 import (
-	"bookstore_oauth-api/src/clients/cassandra"
-	"bookstore_oauth-api/src/domain/access_token"
-	"bookstore_oauth-api/src/domain/errors"
 	"github.com/gocql/gocql"
+	"github.com/n0rdy/bookstore_oauth-api/src/clients/cassandra"
+	"github.com/n0rdy/bookstore_oauth-api/src/domain/access_token"
+	"github.com/n0rdy/bookstore_oauth-api/src/domain/errors"
 )
 
 const (

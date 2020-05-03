@@ -1,10 +1,10 @@
 package http
 
 import (
-	atDomain "bookstore_oauth-api/src/domain/access_token"
-	"bookstore_oauth-api/src/domain/errors"
-	"bookstore_oauth-api/src/services/access_token"
 	"github.com/gin-gonic/gin"
+	atDomain "github.com/n0rdy/bookstore_oauth-api/src/domain/access_token"
+	"github.com/n0rdy/bookstore_oauth-api/src/domain/errors"
+	"github.com/n0rdy/bookstore_oauth-api/src/services/access_token"
 	"net/http"
 )
 

@@ -1,9 +1,9 @@
 package access_token
 
 import (
-	"bookstore_oauth-api/src/domain/errors"
-	"bookstore_users-api/utils/crypto"
 	"fmt"
+	"github.com/n0rdy/bookstore_oauth-api/src/domain/errors"
+	"github.com/n0rdy/bookstore_users-api/utils/crypto"
 	"strings"
 	"time"
 )

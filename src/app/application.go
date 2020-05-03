@@ -1,11 +1,11 @@
 package app
 
 import (
-	"bookstore_oauth-api/src/http"
-	"bookstore_oauth-api/src/repository/db"
-	"bookstore_oauth-api/src/rest"
-	"bookstore_oauth-api/src/services/access_token"
 	"github.com/gin-gonic/gin"
+	"github.com/n0rdy/bookstore_oauth-api/src/http"
+	"github.com/n0rdy/bookstore_oauth-api/src/repository/db"
+	"github.com/n0rdy/bookstore_oauth-api/src/rest"
+	"github.com/n0rdy/bookstore_oauth-api/src/services/access_token"
 )
 
 var (

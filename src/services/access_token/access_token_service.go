@@ -1,10 +1,10 @@
 package access_token
 
 import (
-	"bookstore_oauth-api/src/domain/access_token"
-	"bookstore_oauth-api/src/domain/errors"
-	"bookstore_oauth-api/src/repository/db"
-	"bookstore_oauth-api/src/rest"
+	"github.com/n0rdy/bookstore_oauth-api/src/domain/access_token"
+	"github.com/n0rdy/bookstore_oauth-api/src/domain/errors"
+	"github.com/n0rdy/bookstore_oauth-api/src/repository/db"
+	"github.com/n0rdy/bookstore_oauth-api/src/rest"
 	"strings"
 )
 

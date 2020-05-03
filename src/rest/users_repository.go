@@ -1,10 +1,10 @@
 package rest
 
 import (
-	"bookstore_oauth-api/src/domain/errors"
-	"bookstore_oauth-api/src/domain/users"
 	"encoding/json"
 	"github.com/mercadolibre/golang-restclient/rest"
+	"github.com/n0rdy/bookstore_oauth-api/src/domain/errors"
+	"github.com/n0rdy/bookstore_oauth-api/src/domain/users"
 	"time"
 )
 
